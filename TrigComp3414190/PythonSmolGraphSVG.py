@@ -1,3 +1,7 @@
+# each project gets its own copy of pythonsmolgraphsvg.py 
+# that way we know it works with that particular code
+# real version is @ https://github.com/CodeMonkey1100001001/PythonSmolGraphSVG
+
 import math
 
 class SmolGraph2SVG:
