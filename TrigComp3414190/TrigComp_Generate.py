@@ -1,4 +1,4 @@
-# ver 20230824.1619
+# ver 20230831.1000
 import PythonSmolGraphSVG
 import math
 
@@ -13,34 +13,23 @@ personHeight = 5
 def drawGrid():
     global theDoc
     xStart = sg.minValueX
+    yStart = sg.minValueY
     xEnd = sg.maxValueX
     yEnd = sg.maxValueY
     #xCenter = xEnd - xStart
-    for x in range(0, int(xEnd)+1, 1):
-        theDoc += sg.graphLine(x, sg.minValueY, x, sg.maxValueY, 0.003, "#5f9b9c")
+    for x in range(xStart, int(xEnd)+1, 1):
+        theDoc += sg.graphLine(x, sg.minValueY, x, sg.maxValueY, 0.03, "#5f9b9c")
 
-    for y in range(0, int(yEnd)+1, 1):
-        theDoc += sg.graphLine(sg.minValueX, y, sg.maxValueX, y, 0.003, "#5f9b9c")
-
-    # while x < sg.maxValueX:
-    #     # print("x",x)
-    #     theDoc += sg.graphLine(x, sg.minValueY, x, sg.maxValueY, 0.05, "#5f9b9c")
-    #     x = x + 1.0
-    #
-    # y = sg.minValueY
-    # while y < sg.maxValueY:
-    #     theDoc += sg.graphLine(sg.minValueX, y, sg.maxValueX, y, 0.05, "#5f9b9c")
-    #     y = y + 1.0
+    for y in range(yStart, int(yEnd)+1, 1):
+        theDoc += sg.graphLine(sg.minValueX, y, sg.maxValueX, y, 0.03, "#5f9b9c")
 
     theDoc += sg.graphLine(sg.minValueX, 0, sg.maxValueX, 0, 0.1, "red")
     theDoc += sg.graphLine(0, sg.minValueY, 0, sg.maxValueY, 0.1, "green")
 
-
 print("hello")
 
 sg = PythonSmolGraphSVG.SmolGraph2SVG("inch")
-
-sg.setSize(physicalWidth=4.25*96*2, physicalHeight=6.0*96*2, minX=-4.25, maxX=4.25, minY=-6, maxY=6)
+sg.setSize(16,16, -8,8 , -8, 8)
 theDoc = sg.svgHeader()
 # drawGrid()
 
@@ -49,77 +38,120 @@ theDoc = sg.svgHeader()
 # theDoc += sg.graphLine(0,0,2,2,0.05,"#ff0000")
 # theDoc += sg.graphLine(0,0,2,-2,0.05,"#00ff00")
 
-# x = 0
-# while x < 10.1: #
-# the X grid
-for x in range(0,151,2): # divide by 10 to get 1/10
-    plotX = sg.map(x,0,100,0.00,2.25) # + 0.25
-    lineWidth = 0.006
+smallLine = 0.003
+mediumLine = 0.006
+largeLine = 0.012
+
+# How wide and tall to make the Grid
+howWide = 7.0  # 7.0 in
+for x in range(0,151,1): # divide by 10 to get 1/10
+    plotX = sg.map(x,0,150,0.00, howWide) # + 0.25
+    lineWidth = smallLine
     xMod = (x % 10)
     # print("xMod", xMod)
-    if xMod == 0:
-        lineWidth = 0.012
+    if x % 10 == 0:
+        lineWidth = mediumLine
         theDoc += sg.graphText(str(int(x/10)), plotX +0.06,  0.35 - 0.50 , "12pt", "#111111")
-    if x == 50 or x == 100:
-        lineWidth = 0.018
-    theDoc += sg.graphLine(plotX, 0.0, plotX, 3.50, lineWidth, "#000000")
 
-# the Y Grid
-for y in range(0,151,2): # divide by 10 to get 1/10
-    plotY = sg.map(y,0,100,0.00,2.25) # + 0.25
-    lineWidth = 0.006
-    yMod = (y % 10)
-    # print("yMod", yMod)
-    if yMod == 0:
-        lineWidth = 0.012
-        theDoc += sg.graphText(str(int(y/10)), 0.45 - 0.50 , plotY - 0.05, "12pt", "#111111")
-    if y == 50 or y == 100:
-        lineWidth = 0.018
-    theDoc += sg.graphLine(0.0, plotY, 3.5, plotY, lineWidth, "#000000")
+    # if x == 50 or x == 100:
+    #     lineWidth = 0.018
+    theDoc += sg.graphLine(plotX, 0.0, plotX, howWide, lineWidth, "#000000")
+
+for y in range(0,151,1): # divide by 10 to get 1/10
+    plotY = sg.map(y,0,150,0.00, howWide) # + 0.25
+    lineWidth = smallLine
+    if y % 10 == 0:
+        lineWidth = mediumLine
+        theDoc += sg.graphText(str(int(y/10)), -(1/16) , plotY - (1/16), "12pt", "#000000")
+
+    # if x == 50 or x == 100:
+    #     lineWidth = 0.018
+    theDoc += sg.graphLine(0.0, plotY, howWide, plotY, lineWidth, "#000000")
+
+
+# compass Circle start = 7.0
+compassCircleStart = 7.0
 
 # the Mask
-theDoc += sg.drawArc(0, 0, 3.86, 0, 90, "1.0", "#ffffff") #mask
+theDoc += sg.drawArc(0, 0, compassCircleStart + (1/2), 0, 90, "1.0", "#ffffff") #mask
 
 # compass circle lines
-theDoc += sg.drawArc(0, 0, 3.36, 0, 90, "0.01", "#000000")
-theDoc += sg.drawArc(0, 0, 3.46, 0, 90, "0.01", "#000000")
-theDoc += sg.drawArc(0, 0, 3.56, 0, 90, "0.01", "#000000")
-theDoc += sg.drawArc(0, 0, 3.66, 0, 90, "0.01", "#000000")
+# The innermost line
+theDoc += sg.drawArc(0, 0, compassCircleStart, 0, 90, "0.01", "#000000")
+# The alpha line
+theDoc += sg.drawArc(0, 0, compassCircleStart + (2/8), 0, 90, "0.01", "#000000")
+# The beta Line
+theDoc += sg.drawArc(0, 0, compassCircleStart + (4/8), 0, 90, "0.01", "#000000")
+# The final Tic Lines
+theDoc += sg.drawArc(0, 0, compassCircleStart + (6/8), 0, 90, "0.01", "#000000")
 
 # labels for text on compass circle
-for theAngle in range(0,90):
-    lineLen = 0.09
+# we want to plot from outside to inside for the lines
+compassCircleEnd = compassCircleStart + (6/8)
+for theAngle in range(0, 90):
+    # theAngle = theAngle / 2
+    lineLen = (2/8)
     if theAngle % 5 == 0:
-        lineLen = 0.2
+        lineLen = (4/8)
     if theAngle % 10 == 0:
-        lineLen = 0.3
+        lineLen = (6/8)
         displayAngle = 90 - theAngle
-        theDoc += sg.graphPolarText(textValue=str(displayAngle), x=0, y=0, degrees= theAngle + 0.25, distance = 3.385, size="5pt", color="#000000")
-        theDoc += sg.graphPolarText(textValue=str(theAngle), x=0, y=0, degrees= theAngle + 0.25 - 2.0, distance = 3.485, size="5pt", color="#000000")
-
-    theDoc += sg.graphDualPolarLine(0, 0, 3.66 - lineLen, theAngle, 3.66 , theAngle, "0.1", "#000000" )
+        theDoc += sg.graphPolarText(textValue=str(displayAngle),
+            x=0, y=0, degrees= theAngle + 0.25,
+            distance = compassCircleStart + (1/16),
+            size="10pt", color="#000000")
+        theDoc += sg.graphPolarText(textValue=str(int(theAngle)),
+            x=0, y=0, degrees= theAngle + 0.25 - 2.0,
+            distance = compassCircleStart + (5/16),
+            size="10pt", color="#000000")
+    theDoc += sg.graphDualPolarLine(0, 0,
+        compassCircleEnd - lineLen, theAngle,
+        compassCircleEnd, theAngle,
+        "0.1", "#000000" )
 
 # where is 10
 if True:
-    plotX = sg.map(100.0, 0, 100, 0.0, 2.25)
-    plotY = sg.map(100.0, 0, 100, 0.0, 2.25)
+    plotX = sg.map(100.0, 0, 150, 0.0, howWide)
+    plotY = sg.map(100.0, 0, 150, 0.0, howWide)
     # theDoc += sg.graphCircle(plotX, plotY, 0.006, 0.116, "#00ff00")
-    theDoc += sg.graphDisk(plotX, plotY, 0.02, "#000000")
+    theDoc += sg.graphDisk(plotX, plotY, 0.05, "#000000")
+
+#The shuttle
+theDoc += "<g>\n"
+# the tick marks
+for i in range(0,150):
+    #polarScale = 3.0
+    #theX = sg.map(theX, 0, 10, 0.0, polarScale)
+    #theY = sg.map(theY, 0, 10, 0.0, polarScale)
+
+    #theX2, theY2 = sg.polarToCartesianFlip(0,0,i,40)
+    #theX2 = sg.map(theX2, 0, 10, 0.0, polarScale)
+    #theY2 = sg.map(theY2, 0, 10, 0.0, polarScale)
+    theX = sg.map(i,0,150,0, howWide)
+    lineHeight = 0.1
+    if i % 5 == 0:
+        lineHeight = 0.15
+    if i % 10 == 0:
+        lineHeight = 0.2
+        theDoc += sg.graphText(str(int(i/10)),theX + (1/8), -1.20, "8pt", "#000000")
+    theDoc += sg.graphLine(theX, -1, theX, -1 - lineHeight, 0.006, "#000000")
+
+theDoc += "</g>\n"
 
 #the center point
 theDoc += sg.graphDisk(0,0,0.05,"#ff1111")
 
 # alpha and beta
-theDoc += sg.graphPolarText("α",0,0,-1.25, 3.36, "8pt", "#000000")
-theDoc += sg.graphPolarText("α",0,0,90.55, 3.36, "8pt", "#000000")
-theDoc += sg.graphPolarText("β",0,0,-1.25, 3.46, "8pt", "#000000")
-theDoc += sg.graphPolarText("β",0,0,90.55, 3.46, "8pt", "#000000")
+theDoc += sg.graphPolarText("α",0,0,-1.25, howWide + (1/16), "15pt", "#000000")
+theDoc += sg.graphPolarText("α",0,0,90.55, howWide + (1/16), "15pt", "#000000")
+theDoc += sg.graphPolarText("β",0,0,-1.25, howWide + (5/16), "15pt", "#000000")
+theDoc += sg.graphPolarText("β",0,0,90.55, howWide + (5/16), "15pt", "#000000")
 
 
 # the shuttle
 theDoc += "<g>\n"
 #body design
-theWidth = sg.map(170,0,100,0,2.25)
+theWidth = sg.map(170,0,150,0, howWide)
 theDoc += sg.graphRectangle(0,-1,theWidth,-1.25, 0.01, "#ff0000")
 #theDoc += sg.graphLine(0,-1,theWidth,-1,0.01,"#ff0000")
 #theDoc += sg.graphLine(theWidth,-1,theWidth, -1.2, 0.01,"#ff0000")
@@ -129,27 +161,6 @@ theDoc += "</g>\n"
 
 #final line
 theDoc += sg.graphLine(0,-1,theWidth, -1, 0.012, "#000000")
-# the tick marks
-theDoc += "<g>\n"
-for i in range(0,150):
-    polarScale = 3.0
-    #theX = sg.map(theX, 0, 10, 0.0, polarScale)
-    #theY = sg.map(theY, 0, 10, 0.0, polarScale)
-
-    #theX2, theY2 = sg.polarToCartesianFlip(0,0,i,40)
-    #theX2 = sg.map(theX2, 0, 10, 0.0, polarScale)
-    #theY2 = sg.map(theY2, 0, 10, 0.0, polarScale)
-    theX = sg.map(i,0,100,0,2.25)
-    lineHeight = 0.1
-    if i % 5 == 0:
-        lineHeight = 0.15
-    if i % 10 == 0:
-        lineHeight = 0.2
-        theDoc += sg.graphText(str(int(i/10)),theX + 0.05, -1.20, "6pt", "#000000")
-    theDoc += sg.graphLine(theX, -1, theX, -1 - lineHeight, 0.006, "#000000")
-
-theDoc += "</g>\n"
-
 # theDoc += sg.graphText("TEST", 1.0, 1.0, "12pt", "#ff2222")
 # theDoc += sg.graphLine(0, 0, 2, 3.00, 0.003, "#000000")
 # theDoc += sg.graphLine(0, 0, 2, 3.25, 0.004, "#000000")
@@ -199,3 +210,5 @@ fp.close()
 
 #print(theDoc)
 print(sg.getSizeHuman())
+
+
