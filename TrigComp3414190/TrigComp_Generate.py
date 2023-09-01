@@ -1,5 +1,7 @@
 # ver 20230831.1000
 import PythonSmolGraphSVG
+import PythonSmolGraphFancyStuff
+
 import math
 
 personHeight = 5
@@ -7,8 +9,6 @@ personHeight = 5
 #     halfAlpha = alpha / 2
 #     b = personHeight / math.tan(halfAlpha * (3.14159265359 / 180))
 #     print(halfAlpha, personHeight, b)
-
-
 
 def drawGrid():
     global theDoc
@@ -29,6 +29,8 @@ def drawGrid():
 print("hello")
 
 sg = PythonSmolGraphSVG.SmolGraph2SVG("inch")
+sgf = PythonSmolGraphFancyStuff.SmolGraphFancy("inch")
+
 sg.setSize(16,16, -8,8 , -8, 8)
 theDoc = sg.svgHeader()
 # drawGrid()
@@ -43,6 +45,7 @@ mediumLine = 0.006
 largeLine = 0.012
 
 # How wide and tall to make the Grid
+fancyVersion = True
 howWide = 7.0  # 7.0 in
 for x in range(0,151,1): # divide by 10 to get 1/10
     plotX = sg.map(x,0,150,0.00, howWide) # + 0.25
@@ -52,10 +55,19 @@ for x in range(0,151,1): # divide by 10 to get 1/10
     if x % 10 == 0:
         lineWidth = mediumLine
         theDoc += sg.graphText(str(int(x/10)), plotX +0.06,  0.35 - 0.50 , "12pt", "#111111")
-
     # if x == 50 or x == 100:
     #     lineWidth = 0.018
-    theDoc += sg.graphLine(plotX, 0.0, plotX, howWide, lineWidth, "#000000")
+    markingRadius = howWide
+    v = howWide
+    if fancyVersion == True:
+        theReturn = sgf.circle_line_segment_intersection([0, 0], markingRadius, [plotX, 0], [plotX,markingRadius], full_line=False)
+        print(theReturn, theReturn)
+        if len(theReturn) > 0:
+            (h, v) = theReturn[0]
+
+    # theDoc += sg.graphLine(plotX, 0.0, plotX, howWide, lineWidth, "#000000")  # normal version
+    theDoc += sg.graphLine(plotX, 0.0, plotX, v, lineWidth, "#000000")  # fancy version
+
 
 for y in range(0,151,1): # divide by 10 to get 1/10
     plotY = sg.map(y,0,150,0.00, howWide) # + 0.25
@@ -63,51 +75,65 @@ for y in range(0,151,1): # divide by 10 to get 1/10
     if y % 10 == 0:
         lineWidth = mediumLine
         theDoc += sg.graphText(str(int(y/10)), -(1/16) , plotY - (1/16), "12pt", "#000000")
-
-    # if x == 50 or x == 100:
-    #     lineWidth = 0.018
-    theDoc += sg.graphLine(0.0, plotY, howWide, plotY, lineWidth, "#000000")
+    markingRadius = howWide
+    h = howWide
+    if fancyVersion == True:
+        theReturn = sgf.circle_line_segment_intersection([0, 0], markingRadius, [0, plotY], [markingRadius,plotY], full_line=False)
+        print(theReturn, theReturn)
+        if len(theReturn) > 0:
+            (h, v) = theReturn[0]
+    # theDoc += sg.graphLine(0.0, plotY, howWide, plotY, lineWidth, "#000000") # normal version
+    theDoc += sg.graphLine(0.0, plotY, h, plotY, lineWidth, "#000000")  # fancy version
 
 
 # compass Circle start = 7.0
 compassCircleStart = 7.0
 
-# the Mask
-theDoc += sg.drawArc(0, 0, compassCircleStart + (1/2), 0, 90, "1.0", "#ffffff") #mask
+# the Mask only use for non fancy version
+if fancyVersion == False:
+    theDoc += sg.graphArc(0, 0, compassCircleStart + (1/2), 0, 90, width=1.0, color="#ffffff") #mask
+
 
 # compass circle lines
 # The innermost line
-theDoc += sg.drawArc(0, 0, compassCircleStart, 0, 90, "0.01", "#000000")
+theDoc += sg.graphArc(0, 0, compassCircleStart, 0, 90, width=0.01, color="#000000")
 # The alpha line
-theDoc += sg.drawArc(0, 0, compassCircleStart + (2/8), 0, 90, "0.01", "#000000")
+theDoc += sg.graphArc(0, 0, compassCircleStart + (2/8), 0, 90, 0.01, "#000000")
 # The beta Line
-theDoc += sg.drawArc(0, 0, compassCircleStart + (4/8), 0, 90, "0.01", "#000000")
+theDoc += sg.graphArc(0, 0, compassCircleStart + (4/8), 0, 90, 0.01, "#000000")
 # The final Tic Lines
-theDoc += sg.drawArc(0, 0, compassCircleStart + (6/8), 0, 90, "0.01", "#000000")
+theDoc += sg.graphArc(0, 0, compassCircleStart + (6/8), 0, 90, 0.01, "#000000")
 
 # labels for text on compass circle
 # we want to plot from outside to inside for the lines
 compassCircleEnd = compassCircleStart + (6/8)
-for theAngle in range(0, 90):
-    # theAngle = theAngle / 2
-    lineLen = (2/8)
+for theAngle in range(0, 90):  # 90 * 2 for extra tic lines 90 * 10 for a whole bunch
+    # theAngle = theAngle / 2.0
+    lineWidth = 0.0033
+    lineLen = (1/8)
+
+    if theAngle % 1 == 0:
+        lineLen = (2/8)
+
     if theAngle % 5 == 0:
         lineLen = (4/8)
+        lineWidth = 0.010
     if theAngle % 10 == 0:
         lineLen = (6/8)
+        lineWidth = 0.015
         displayAngle = 90 - theAngle
-        theDoc += sg.graphPolarText(textValue=str(displayAngle),
+        theDoc += sg.graphPolarText(textValue=str(int(displayAngle)),
             x=0, y=0, degrees= theAngle + 0.25,
-            distance = compassCircleStart + (1/16),
+            radius = compassCircleStart + (1/16),
             size="10pt", color="#000000")
         theDoc += sg.graphPolarText(textValue=str(int(theAngle)),
             x=0, y=0, degrees= theAngle + 0.25 - 2.0,
-            distance = compassCircleStart + (5/16),
+            radius = compassCircleStart + (5/16),
             size="10pt", color="#000000")
     theDoc += sg.graphDualPolarLine(0, 0,
         compassCircleEnd - lineLen, theAngle,
         compassCircleEnd, theAngle,
-        "0.1", "#000000" )
+        lineWidth, "#000000" )
 
 # where is 10
 if True:
