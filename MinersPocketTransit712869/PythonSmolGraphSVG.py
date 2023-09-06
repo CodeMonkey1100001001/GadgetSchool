@@ -94,7 +94,17 @@ units = {self.units}
         GRAPHWIDTH = self.physicalWidth
         GRAPHHEIGHT = self.physicalHeight
         SVGDOCUMENT += "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"" + str(GRAPHWIDTH) + "\"  height=\"" + str(GRAPHHEIGHT) + "\"  >\n"
-        # SVGDOCUMENT += "<rect x=\"0\" y=\"0\" width=\"" + str(GRAPHWIDTH) + "\" height=\"" + str(GRAPHHEIGHT) +"\"  style=\"fill:white; stroke-width:3;stroke:rgb(0,0,0)\"/>\n"
+#         SVGDOCUMENT += f'''<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+# <svg
+#         version = "1.1"
+#         width = "8.5in"
+#         height = "11in"
+#         id = "svg5418"
+#         xmlns: inkscape = "http://www.inkscape.org/namespaces/inkscape"
+#         xmlns: sodipodi = "http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+#         xmlns = "http://www.w3.org/2000/svg"
+#         xmlns: svg = "http://www.w3.org/2000/svg" >\n'''
+
         # print("[$SVGDOCUMENT]\n")
         self.document += SVGDOCUMENT
         return SVGDOCUMENT

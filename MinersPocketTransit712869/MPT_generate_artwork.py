@@ -10,7 +10,8 @@ import PythonSmolGraphSVG  # use current version that is included here
 
 def drawGrid():
     global theDoc
-    theDoc += "<g>\n"
+    #theDoc += f'<g inkscape:groupmode="layer"\nid="layer1"\ninkscape:label="Grid">\n'
+    theDoc += f'<g>\n'
     dgx = sg.minValueX
     # print("x minValueX", x, sg.minValueX)
     # print("sg.minValueY", sg.minValueY, sg.maxValueY)
@@ -41,20 +42,22 @@ theDoc = sg.svgHeader()
 # #########################
 drawGrid()
 
-theDoc += "<g>\n"
 
-cylinderRadius = 25  # mm
+cylinderRadius = 40  # mm
 stripWidth = 2 * math.pi * cylinderRadius
 print('stripWidth / circumfrence', stripWidth)
 stripHeight = 20  # mm
 spokeCount = 12
 
+theDoc += "<g id='cut'>\n"
 theDoc += sg.graphRectangle(0, 0, stripWidth, stripHeight, color="#ff0000")
-
 for i in range(0, 361, int(360/12)):
     theX = sg.map(i, 0, 360, 0, stripWidth)
     theY = stripHeight
     theDoc += sg.graphCircle(theX, theY , 3.0/2, color="#ff0000")
+theDoc += "</g>\n"
+
+theDoc += "<g id='print'>\n"
 for i in range(0, 361):
     theY = 0
     theX = sg.map(i, 0, 360, 0, stripWidth, )
@@ -65,10 +68,37 @@ for i in range(0, 361):
         tickHeight = 7
         theDoc += sg.graphText(str(i),theX,theY + 8, size="4pt", textAnchor="middle")
     theDoc += sg.graphLine(theX,theY, theX, theY + tickHeight)
+theDoc += "</g>\n"
+
+# The vernier scale
+
+# vernier for compass
+theDoc += "<g id='cutvernier'>\n"
+stripHeight = 10
+theDoc += sg.graphRectangle(0, 40.0, stripWidth, stripHeight, color="#ff0000")
+for i in range(0, 361, int(360/12)):
+    theX = sg.map(i, 0, 360, 0, stripWidth)
+    theY = stripHeight + 40.0
+    theDoc += sg.graphCircle(theX, theY , 3.0/2, color="#ff0000")
+theDoc += "</g>\n"
+
+theDoc += "<g id='printvernier'>\n"
+for i in range(0, 11):
+    theY = 40
+    iValue = i - (0.1 * i)
+    theX = sg.map(iValue, 0, 360, 0, stripWidth, )
+    tickHeight = 2.0  # mm
+    if i % 5 == 0:
+        tickHeight = 2.25
+    if i % 10 == 0:
+        tickHeight = 2.50
+    if i < 10:
+        theDoc += sg.graphText(str(i), theX, theY + 2.75, size="1.5pt", textAnchor="middle")
+    theDoc += sg.graphLine(theX,theY, theX, theY + tickHeight)
+theDoc += "</g>\n"
 
 
 # ######################
-theDoc += "</g>\n"
 
 theDoc += sg.svgFooter()
 
