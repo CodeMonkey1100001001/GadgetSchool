@@ -1,7 +1,7 @@
 # PythonSmolGraphSVG.py
 # very simple python to basic plain SVG generator
 # useful for making parametric graphs for inkscape.
-# Version 20230901.0350
+# Version 20230905.1910
 # SVG is normally 0,0 at upper left corner this lib
 # is set to use 0,0 and a normal cartesian grid with +x,+y in
 # the upper right quadrant and -x,-y in the lower left.
@@ -17,12 +17,12 @@ class SmolGraph2SVG:
         self.fontSize = "10pt"
         self.color = "#000000"
         self.fontFamily = "monospace"
-
+        self.units = units
         if units == "inch":
             self.dpi = 96
         if units == "mm":
-            self.dpi = 96/2.54/10
-            self.penWidth = 0.5  # 0.5mm pen
+            self.dpi = 96/25.4
+            self.penWidth = 0.05  # 0.5mm pen
         if units == "cm":
             self.dpi = 96/2.54
             self.penWidth = 0.05  # 0.5mm pen
@@ -68,6 +68,7 @@ minValueY = {self.minValueY}
 maxValueY = {self.maxValueY}
 cartCenterX = {self.cartCenterX}
 cartCenterY = {self.cartCenterY}
+units = {self.units}
 
 '''
         # cartCenterX = {self.cartCenterX}
