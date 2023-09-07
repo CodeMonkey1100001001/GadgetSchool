@@ -24,14 +24,14 @@
      units="in"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:zoom="2.2392239"
-     inkscape:cx="97.131866"
-     inkscape:cy="773.25897"
-     inkscape:window-width="1920"
-     inkscape:window-height="1020"
-     inkscape:window-x="0"
+     inkscape:zoom="0.55980598"
+     inkscape:cx="220.61215"
+     inkscape:cy="719.89228"
+     inkscape:window-width="1452"
+     inkscape:window-height="1015"
+     inkscape:window-x="200"
      inkscape:window-y="0"
-     inkscape:window-maximized="1"
+     inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
      inkscape:document-units="in"
      inkscape:snap-bbox="true"
@@ -4584,6 +4584,17 @@
          y="100.3259"
          id="tspan10470"
          style="font-size:29.3333px">Calculator</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1.25;font-family:'Saucer BB';-inkscape-font-specification:'Saucer BB'"
+       x="77.896973"
+       y="1010.342"
+       id="text3271"><tspan
+         sodipodi:role="line"
+         id="tspan3269"
+         x="77.896973"
+         y="1010.342"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#ff0000">Cut Red Lines</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -4610,7 +4621,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="CUT"
-     style="display:none">
+     style="display:inline">
     <path
        id="polygon1238"
        style="fill:none;stroke:#ff0000;stroke-width:0.96"
