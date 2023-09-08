@@ -77,7 +77,7 @@ for y in range(0, 151, 1):  # divide by 10 to get 1/10
     lineWidth = smallLine
     if y % 10 == 0:
         lineWidth = mediumLine
-        theDoc += sg.graphText(str(int(y / 10)), -(1 / 16), plotY - (1 / 16), "12pt", "#000000")
+        theDoc += sg.graphText(str(int(y / 10)), -(1 / 16), plotY , "12pt", "#000000",textAnchor="end")
     markingRadius = howWide
     h = howWide
     if fancyVersion:
@@ -161,7 +161,7 @@ for i in range(0, 150):
         lineHeight = 0.15
     if i % 10 == 0:
         lineHeight = 0.2
-        theDoc += sg.graphText(str(int(i / 10)), theX + (1 / 8), -1.20, "8pt", "#000000")
+        theDoc += sg.graphText(str(int(i / 10)), theX , -1.20, "8pt", "#000000",textAnchor="start")
     theDoc += sg.graphLine(theX, -1, theX, -1 - lineHeight, 0.006, "#000000")
 
 theDoc += "</g>\n"

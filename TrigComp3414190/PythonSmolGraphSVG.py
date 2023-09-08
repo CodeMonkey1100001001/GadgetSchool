@@ -269,7 +269,7 @@ cartCenterY = {self.cartCenterY}
         self.document += SVGDOCUMENT
         return SVGDOCUMENT
 
-    def graphText(self, textValue, x, y, size=False, color=False):
+    def graphText(self, textValue, x, y, size=False, color=False,  textAnchor="start"):
         size = self.getFontSize(size)
         color = self.getColor(color)
         SVGDOCUMENT = ""
@@ -277,16 +277,16 @@ cartCenterY = {self.cartCenterY}
         y1 = self.map(y, self.minValueY, self.maxValueY, self.startY + self.physicalHeight, self.startY) - self.cartCenterY
         # y1=y1+(size/3)
         # print("text",x1,y1)
-        SVGDOCUMENT += f'<text x="{x1}" y="{y1}" fill="{color}" font-family="{self.fontFamily}" font-size="{size}" text-anchor="end">{textValue}</text>\n'
+        SVGDOCUMENT += f'<text x="{x1}" y="{y1}" fill="{color}" font-family="{self.fontFamily}" font-size="{size}" text-anchor="{textAnchor}">{textValue}</text>\n'
         self.document += SVGDOCUMENT
         return SVGDOCUMENT
 
-    def graphTextRotate(self, textValue, x, y, size, degrees, color):
+    def graphTextRotate(self, textValue, x, y, size, degrees, color, textAnchor="start"):
         SVGDOCUMENT = ""
         x1 = self.map(x, self.minValueX, self.maxValueX, self.startX, self.startX+self.physicalWidth) + self.cartCenterX
         y1 = self.map(y, self.minValueY, self.maxValueY, self.startY+self.physicalHeight, self.startY) - self.cartCenterY
         # y1=y1+(size/3)
-        SVGDOCUMENT += f'<text x="{x1}" y="{y1}" fill="{color}" font-family="{self.fontFamily}" font-size="{size}"  transform="rotate({degrees} {x1},{y1})">{textValue}</text>\n'
+        SVGDOCUMENT += f'<text x="{x1}" y="{y1}" fill="{color}" font-family="{self.fontFamily}" font-size="{size}"  transform="rotate({degrees} {x1},{y1})" text-anchor="{textAnchor}">{textValue}</text>\n'
         self.document += SVGDOCUMENT
         return SVGDOCUMENT
 
@@ -376,7 +376,7 @@ cartCenterY = {self.cartCenterY}
     def output(self):
         return self.document
 
-    def graphPolarText(self, textValue, x, y, degrees, radius, size=False, color=False, flip=False):
+    def graphPolarText(self, textValue, x, y, degrees, radius, size=False, color=False, flip=False, textAnchor="start"):
         size = self.getFontSize(size)
         color = self.getColor(color)
         SVGDOCUMENT = ""
@@ -390,7 +390,11 @@ cartCenterY = {self.cartCenterY}
         y1 = polarY
         if flip is True:
             degrees = degrees + 180
+        # text anchor
+        #textAnchor = "start"
+        #textAnchor = "middle"
+        #textAnchor = "end"
         # SVGDOCUMENT += f'<text x="{x1}" y="{y1}" transform="rotate({degrees} {x1},{y1})" fill="{color}" font-face="sans" font-size="{size}">{textValue}</text>\n'
-        SVGDOCUMENT += f'<text nox="{x1}" noy="{y1}" transform="translate( {x1},{y1}) rotate({degrees}) " fill="{color}" font-family="{self.fontFamily}" font-size="{size}">{textValue}</text>\n'
+        SVGDOCUMENT += f'<text nox="{x1}" noy="{y1}" transform="translate( {x1},{y1}) rotate({degrees}) " fill="{color}" font-family="{self.fontFamily}" font-size="{size}" text-anchor="{textAnchor}">{textValue}</text>\n'
         self.document += SVGDOCUMENT
         return SVGDOCUMENT
