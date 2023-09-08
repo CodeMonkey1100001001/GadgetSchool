@@ -160,7 +160,7 @@ cython_debug/
 .idea/
 
 
-# 
+# Adding new ignoreme directives
 */ignoreme/*
 
 *~
