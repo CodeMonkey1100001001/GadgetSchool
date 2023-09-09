@@ -115,7 +115,7 @@ theDoc += sg.graphArc(0, 0, compassCircleStart + (6 / 8), 0, 90, 0.01, "#000000"
 compassCircleEnd = compassCircleStart + (6 / 8)
 for theAngle in range(0, 90):  # 90 * 2 for extra tic lines 90 * 10 for a whole bunch
     # theAngle = theAngle / 2.0
-    lineWidth = 0.0033
+    lineWidth = 0.01
     lineLen = (1 / 8)
 
     if theAngle % 1 == 0:
@@ -123,7 +123,7 @@ for theAngle in range(0, 90):  # 90 * 2 for extra tic lines 90 * 10 for a whole 
 
     if theAngle % 5 == 0:
         lineLen = (4 / 8)
-        lineWidth = 0.010
+        lineWidth = 0.0125
     if theAngle % 10 == 0:
         lineLen = (6 / 8)
         lineWidth = 0.015
