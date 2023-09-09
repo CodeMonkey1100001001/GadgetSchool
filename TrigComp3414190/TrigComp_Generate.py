@@ -47,6 +47,8 @@ smallLine = 0.003
 mediumLine = 0.006
 largeLine = 0.012
 
+theDoc += "<g id='theMainBody'>\n"
+
 # How wide and tall to make the Grid
 fancyVersion: bool = True
 howWide = 7.0  # 7.0 in
@@ -57,7 +59,8 @@ for x in range(0, 151, 1):  # divide by 10 to get 1/10
     # print("xMod", xMod)
     if x % 10 == 0:
         lineWidth = mediumLine
-        theDoc += sg.graphText(str(int(x / 10)), plotX + 0.06, 0.35 - 0.50, "12pt", "#111111")
+        if (x<150):
+            theDoc += sg.graphText(str(int(x / 10)), plotX + 0.06, 0.35 - 0.50, "12pt", "#111111")
     # if x == 50 or x == 100:
     #     lineWidth = 0.018
     markingRadius = howWide
@@ -77,7 +80,8 @@ for y in range(0, 151, 1):  # divide by 10 to get 1/10
     lineWidth = smallLine
     if y % 10 == 0:
         lineWidth = mediumLine
-        theDoc += sg.graphText(str(int(y / 10)), -(1 / 16), plotY , "12pt", "#000000",textAnchor="end")
+        if (y<150):
+            theDoc += sg.graphText(str(int(y / 10)), -(1 / 16), plotY , "12pt", "#000000",textAnchor="end")
     markingRadius = howWide
     h = howWide
     if fancyVersion:
@@ -144,8 +148,18 @@ if True:
     # theDoc += sg.graphCircle(plotX, plotY, 0.006, 0.116, "#00ff00")
     theDoc += sg.graphDisk(plotX, plotY, 0.05, "#000000")
 
+# alpha and beta
+theDoc += sg.graphPolarText("α", 0, 0, -1.25, howWide + (1 / 16), "15pt", "#000000")
+theDoc += sg.graphPolarText("α", 0, 0, 90.55, howWide + (1 / 16), "15pt", "#000000")
+theDoc += sg.graphPolarText("β", 0, 0, -1.25, howWide + (5 / 16), "15pt", "#000000")
+theDoc += sg.graphPolarText("β", 0, 0, 90.55, howWide + (5 / 16), "15pt", "#000000")
+
+theDoc += "</g>\n"  # end of main body
+
+
 # The shuttle
-theDoc += "<g>\n"
+theWidth = sg.map(170, 0, 150, 0, howWide)
+theDoc += "<g id='theShuttle'>\n"
 # the tick marks
 for i in range(0, 150):
     # polarScale = 3.0
@@ -164,30 +178,74 @@ for i in range(0, 150):
         theDoc += sg.graphText(str(int(i / 10)), theX , -1.20, "8pt", "#000000",textAnchor="start")
     theDoc += sg.graphLine(theX, -1, theX, -1 - lineHeight, 0.006, "#000000")
 
-theDoc += "</g>\n"
+theDoc += sg.graphLine(0, -1, theWidth, -1, 0.012, "#000000")  # final line
+
+# the vernier gauge
+# vernier for compass
+theVernierRadius = compassCircleEnd - 0.45
+for i in range(0,11):
+    theDoc += sg.graphDualPolarLine(0,-1,theVernierRadius,90 + i - (0.1 * i) ,theVernierRadius + 0.25,90 + i - (0.1 * i),width=0.01)
+    if (i >0 and i <10):
+        theDoc += sg.graphPolarText(str(i),0,-1 ,90 + i,theVernierRadius - (3/32),size="6pt", textAnchor="end")
+
+
+
+theDoc += "</g>\n"  # end of the shuttle
+
+
+theDoc += "<g id='CUT'>\n"
 
 # the center point
 theDoc += sg.graphDisk(0, 0, 0.05, "#ff1111")
-
-# alpha and beta
-theDoc += sg.graphPolarText("α", 0, 0, -1.25, howWide + (1 / 16), "15pt", "#000000")
-theDoc += sg.graphPolarText("α", 0, 0, 90.55, howWide + (1 / 16), "15pt", "#000000")
-theDoc += sg.graphPolarText("β", 0, 0, -1.25, howWide + (5 / 16), "15pt", "#000000")
-theDoc += sg.graphPolarText("β", 0, 0, 90.55, howWide + (5 / 16), "15pt", "#000000")
-
 # the shuttle
-theDoc += "<g>\n"
 # body design
-theWidth = sg.map(170, 0, 150, 0, howWide)
-theDoc += sg.graphRectangle(0, -1, theWidth, -1.25, 0.01, "#ff0000")
 # theDoc += sg.graphLine(0,-1,theWidth,-1,0.01,"#ff0000")
 # theDoc += sg.graphLine(theWidth,-1,theWidth, -1.2, 0.01,"#ff0000")
-theDoc += sg.graphDisk(0, -1, 0.125, "#ffaaaa")
-theDoc += sg.graphDisk(0, -1, 0.05, "#ff1111")
-theDoc += "</g>\n"
 
-# final line
-theDoc += sg.graphLine(0, -1, theWidth, -1, 0.012, "#000000")
+
+
+
+#the cutout
+# theDoc += sg.graphRectangle(0, -1, theWidth, -1.25, 0.01, "#ff0000")  # now do lines to accomidate the vernier scale
+line1X , line1Y = sg.polarToCartesian(0,-1,0.125,90)
+arcX, arcY = sg.polarToCartesian(0, -1, theVernierRadius +0.25, 90)
+theDoc += sg.graphLine(line1X, line1Y, arcX, arcY, width = 0.01, color="#ff0000")  # outgoing line
+
+theDoc += sg.graphArc(0,-1, theVernierRadius +0.25,90,90+10,width="0.1", color="#ff0000")  #the vernier arc
+
+arcX, arcY = sg.polarToCartesian(0,-1, theVernierRadius + 0.25, 90+10)
+theDoc += sg.graphLine(0,-1.25,arcX, arcY, color="#ff0000",width=0.01)  # return line
+
+line1X , line1Y = sg.polarToCartesian(0,-1,0.125,180)
+theDoc += sg.graphLine(line1X, line1Y, 0, -1.25, color="#ff0000", width=0.01) # down stroke line
+
+# circle cutout
+# theDoc += sg.graphArc(0,-1,0.125,180,90,width=0.5,color="#ff0000")
+#theDoc += sg.graphDisk(0, -1, 0.125, "#ffaaaa")
+theDoc += sg.graphDisk(0, -1, 0.05, "#ff1111")
+theDoc += sg.graphArc(0,-1, 0.125, 180, 360+90, color="#ff0000", width=0.01)
+
+theDoc += "</g>\n"  # end of CUT
+
+doCropMarks = False
+if doCropMarks:
+    theDoc += "<g id='CropMarks'>\n"
+    minX1, fakeY = sg.polarToCartesian(0,-1,0.125,270)
+    theDoc += sg.graphDisk(minX1,fakeY, 0.05,"#00ff00")
+    maxX1, fakeY = sg.polarToCartesian(0,-1, theVernierRadius +0.25,90)
+    theDoc += sg.graphDisk(maxX1,fakeY, 0.05,"#00ff00")
+    fakeX1, maxY1 = sg.polarToCartesian(0,-1, theVernierRadius +0.25,90+10)
+    theDoc += sg.graphDisk(fakeX1,maxY1, 0.05,"#00ff00")
+    fakeX1, minY1 = sg.polarToCartesian(0,0,0.05,0)
+    theDoc += sg.graphDisk(fakeX1,minY1, 0.05,"#00ff00")
+    # the real ones
+    theDoc += sg.graphDisk(minX1,minY1, 0.05,"#0000ff")  # upper left
+    theDoc += sg.graphDisk(maxX1,minY1, 0.05,"#0000ff")  # upper right
+    theDoc += sg.graphDisk(maxX1,maxY1, 0.05,"#0000ff")  # lower right
+    theDoc += sg.graphDisk(minX1,maxY1, 0.05,"#0000ff")  # lower left
+    theDoc +=  "</g>\n"  # end cropmarks
+
+
 # theDoc += sg.graphText("TEST", 1.0, 1.0, "12pt", "#ff2222")
 # theDoc += sg.graphLine(0, 0, 2, 3.00, 0.003, "#000000")
 # theDoc += sg.graphLine(0, 0, 2, 3.25, 0.004, "#000000")
@@ -198,6 +256,14 @@ theDoc += sg.graphLine(0, -1, theWidth, -1, 0.012, "#000000")
 # theDoc += sg.graphLine(0, 0, 2, 4.50, 0.009, "#000000")
 # theDoc += sg.graphLine(0, 0, 2, 4.75, 0.010, "#000000")
 # theDoc += sg.graphLine(0, 0, 2, 5.00, 0.011, "#000000")
+
+
+# theDoc += sg.graphPolygon([
+#     [-3,3],
+#     [3,1],
+#     [1,-2],
+#     [-1,-1]
+# ] )
 
 # cartX, cartY = sg.polarToCartesian(0,0,100,90)
 # theDoc += sg.graphLine(0,0,1.0,1.0,0.1,"green")
