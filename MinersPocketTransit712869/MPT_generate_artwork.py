@@ -34,7 +34,7 @@ print("hello")
 
 sg = PythonSmolGraphSVG.SmolGraph2SVG("mm")
 
-baseSize = 280
+baseSize = 500  # in mm
 
 sg.setSize(baseSize * 2, baseSize * 2, -baseSize, baseSize, -baseSize, baseSize)
 # sg.setCenter(-10,-10)
@@ -46,28 +46,28 @@ drawGrid()
 cylinderRadius = 40  # mm
 stripWidth = 2 * math.pi * cylinderRadius
 print('stripWidth / circumfrence', stripWidth)
-stripHeight = 20  # mm
+stripHeight = 10  # mm
 spokeCount = 12
 
 theDoc += "<g id='cut'>\n"
 theDoc += sg.graphRectangle(0, 0, stripWidth, stripHeight, color="#ff0000")
 for i in range(0, 361, int(360/12)):
     theX = sg.map(i, 0, 360, 0, stripWidth)
-    theY = stripHeight
+    theY = 0  # stripHeight
     theDoc += sg.graphCircle(theX, theY , 3.0/2, color="#ff0000")
 theDoc += "</g>\n"
 
 theDoc += "<g id='print'>\n"
-for i in range(0, 361):
-    theY = 0
+for i in range(0, 371):
+    theY = stripHeight
     theX = sg.map(i, 0, 360, 0, stripWidth, )
     tickHeight = 3.0  # mm
     if i % 5 == 0:
-        tickHeight = 5
+        tickHeight = 5.0
     if i % 10 == 0:
-        tickHeight = 7
-        theDoc += sg.graphText(str(i),theX,theY + 8, size="4pt", textAnchor="middle")
-    theDoc += sg.graphLine(theX,theY, theX, theY + tickHeight)
+        tickHeight = 6.0
+        theDoc += sg.graphText(str(i),theX,theY - 7.5, size="4pt", textAnchor="middle")
+    theDoc += sg.graphLine(theX,theY + 1, theX, theY - tickHeight )  # print past the cut line
 theDoc += "</g>\n"
 
 # The vernier scale
