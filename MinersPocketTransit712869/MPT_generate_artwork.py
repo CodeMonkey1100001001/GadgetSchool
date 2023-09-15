@@ -45,19 +45,37 @@ drawGrid()
 
 cylinderRadius = 40  # mm
 stripWidth = 2 * math.pi * cylinderRadius
+stripWidth = stripWidth + 0.2  # compensate for the paper thickness
 print('stripWidth / circumfrence', stripWidth)
 stripHeight = 10  # mm
 spokeCount = 12
 
+
+printCutXmin = -3
+printCutYmin = -3
+printCutXmax = stripWidth + 10
+printCutYmax = stripHeight + 50
+
 theDoc += "<g id='cut'>\n"
-theDoc += sg.graphRectangle(0, 0, stripWidth, stripHeight, color="#ff0000")
-for i in range(0, 361, int(360/12)):
+# the alignment cut
+theDoc += sg.graphRectangle(printCutXmin,printCutYmin,printCutXmax,printCutYmax, color="#ff0000",width=0.1)
+theDoc += sg.graphRectangle(0, 0, stripWidth +8, stripHeight - 0.9, color="#ff0000")  # strip cut
+for i in range(0, 371, int(360/12)):
     theX = sg.map(i, 0, 360, 0, stripWidth)
     theY = 0  # stripHeight
     theDoc += sg.graphCircle(theX, theY , 3.0/2, color="#ff0000")
 theDoc += "</g>\n"
 
 theDoc += "<g id='print'>\n"
+#LL
+theDoc += sg.graphRectangle(printCutXmin - 10, printCutYmin - 10, printCutXmin, printCutYmin, color="#000000", width=.25)
+#LR
+theDoc += sg.graphRectangle(printCutXmax + 10, printCutYmin - 10, printCutXmax, printCutYmin, color="#000000", width=.25)
+#UL
+theDoc += sg.graphRectangle(printCutXmin - 10, printCutYmax + 10, printCutXmin, printCutYmax, color="#000000", width=.25)
+#UR
+theDoc += sg.graphRectangle(printCutXmax + 10, printCutYmax +10, printCutXmax, printCutYmax, color="#000000", width=.25)
+
 for i in range(0, 371):
     theY = stripHeight
     theX = sg.map(i, 0, 360, 0, stripWidth, )
