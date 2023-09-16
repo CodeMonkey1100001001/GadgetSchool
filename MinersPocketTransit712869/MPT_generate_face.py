@@ -87,6 +87,25 @@ for deg in range(0,360):
     theDoc += sg.graphDualPolarLine(0,0, innerRadius, deg, innerRadius + 2, deg)
 
 
+# bottom arm protractor
+innerRadiusProtractor = 32
+outerRadiusProtractor = 42
+for deg in range(0,91):
+    tickWidth = 4.5
+    if (deg % 5) == 0:
+        tickWidth = 5.5
+    if (deg % 10) == 0:
+        tickWidth = 6.5
+        theDoc += sg.graphPolarText(str(int(deg)),30,30, deg, innerRadiusProtractor + 2.1 , size="4pt", textAnchor="middle")
+    theDoc += sg.graphDualPolarLine(30,30, outerRadiusProtractor - tickWidth, deg, outerRadiusProtractor, deg)
+    #theDoc += sg.graphDualPolarLine(30,30, innerRadiusProtractor, deg, innerRadiusProtractor + 2, deg)
+
+# bottom arm protractor cut
+theDocCut += sg.graphArc(30,30, innerRadiusProtractor,0,90, color="#ff0000")
+theDocCut += sg.graphArc(30,30, outerRadiusProtractor,0,90, color="#ff0000")
+theDocCut += sg.graphDualPolarLine(30,30,innerRadiusProtractor,0, outerRadiusProtractor, 0, color="#ff0000")
+theDocCut += sg.graphDualPolarLine(30,30,innerRadiusProtractor, 90, outerRadiusProtractor, 90, color="#ff0000")
+
 # cut file
 cutColor = "#ff0000"
 cutWidth = 0.1
@@ -125,6 +144,9 @@ theDocWings += sg.graphCircle(0,0,innerDiameter / 2, width=cutWidth, color=cutCo
 
 # theDoc += theDocWings
 theDocCut += theDocWings
+
+
+
 
 # the page cutout
 printPortion, cutPortion = drawCutAndPrint(-100, -100,100,100)
