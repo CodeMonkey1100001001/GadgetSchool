@@ -10,10 +10,12 @@ We have changed certain elements of the design to correct problems we saw with t
 Throughout the design we tried to use brass parts for the metallic ones to make sure that they did not interfere with the magnetic compass needle. 
 
 # Print settings
-STLFiles/HBody-MinersPocketTransitUS712869.stl - Generate Support: Touching Buildplate. Adhesion: Skirt. 1.9Hours
-STLFiles/ArmTop-MinersPocketTransitUS712869.stl - print veritcal. Generate Support: everywhere. Adhesion: Raft
-STLFiles/ArmBot-MinersPocketTransitUS712869.stl - print veritcal. Generate Support: everywhere. Adhesion: Raft
-STLFiles/FlapTopBot-MinersPocketTransitUS712869.stl - print two copies. Generate Support: No. Adhesion: Skirt. 
+* STLFiles/HBody-MinersPocketTransitUS712869.stl - Generate Support: Touching Buildplate. Adhesion: Skirt. 1.9Hours
+* STLFiles/ArmTop-MinersPocketTransitUS712869.stl - print veritcal. Generate Support: everywhere. Adhesion: Raft 1.08Hours
+* STLFiles/ArmBot-MinersPocketTransitUS712869.stl - print veritcal. Generate Support: everywhere. Adhesion: Raft
+* STLFiles/FlapTopBot-MinersPocketTransitUS712869.stl - print two copies. Generate Support: No. Adhesion: Skirt. 
+* STLFiles/BottomDisk-MinersPocketTransitUS712869 - flip so top is bottom. Generate Support: off Adhesion: Skirt 1.78Hours
+
 
 
 # Parts Needed
