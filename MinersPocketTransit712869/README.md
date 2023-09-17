@@ -11,8 +11,8 @@ Throughout the design we tried to use brass parts for the metallic ones to make 
 
 # Print settings
 STLFiles/HBody-MinersPocketTransitUS712869.stl - Generate Support: Touching Buildplate. Adhesion: Skirt. 1.9Hours
-STLFiles/ArmTop-MinersPocketTransitUS712869.stl
-STLFiles/ArmBot-MinersPocketTransitUS712869.stl
+STLFiles/ArmTop-MinersPocketTransitUS712869.stl - print veritcal. Generate Support: everywhere. Adhesion: Raft
+STLFiles/ArmBot-MinersPocketTransitUS712869.stl - print veritcal. Generate Support: everywhere. Adhesion: Raft
 STLFiles/FlapTopBot-MinersPocketTransitUS712869.stl - print two copies. Generate Support: No. Adhesion: Skirt. 
 
 
