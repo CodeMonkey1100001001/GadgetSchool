@@ -249,13 +249,15 @@ theDocCut += sg.graphDualPolarLine(30,30,innerRadiusProtractor, 90, outerRadiusP
 # the page cutout
 printPortion, cutPortion = drawCutAndPrint(-132, -100,132,100)
 theDoc += printPortion
-theDoc += cutPortion
+# theDoc += cutPortion
 theDocCut += cutPortion
 
+# Add the cut file to the print file
+# theDoc += theDocCut # Uncomment if you want PRINT+CUT
 
+theDocCut = sg.svgHeader() + theDocCut  # This allows it to be part of the PRINT and/or the CUT
 # ######################
 
-theDoc += theDocCut # HERE Here temporary while debug to keep them both in one file
 
 theDoc += sg.svgFooter()
 theDocCut += sg.svgFooter()
