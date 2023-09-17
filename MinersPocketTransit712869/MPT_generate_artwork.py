@@ -58,7 +58,7 @@ baseSizeY = 215.9
 sg.setSize(baseSizeX , baseSizeY, baseSizeX / 2 * -1.0 , baseSizeX / 2, baseSizeY / 2 * -1.0 , baseSizeY/2)
 # sg.setCenter(baseSizeX / 2, baseSizeY / 2)
 theDoc = sg.svgHeader()
-theDocCut = sg.svgHeader()
+theDocCut = "" # HERE Here sg.svgHeader()
 
 # #########################
 # drawGrid()
@@ -112,7 +112,6 @@ for i in range(0, 371):
 theDoc += "</g>\n"
 
 # The vernier scale
-
 # vernier for top disk
 theDoc += "<g id='printvernier'>\n"
 for i in range(-10, 11):
@@ -129,32 +128,39 @@ for i in range(-10, 11):
     theDoc += sg.graphLine(theX,theY, theX, theY + tickHeight)
 theDoc += sg.graphText("Vernier Scale",10,theY + 5.5,size="4pt", textAnchor="middle")
 theDoc += "</g>\n"
-theDocCut += sg.graphRectangle(0,theY,20,theY+8.75, color="#ff0000", width=0.1)
+theDocCut += sg.graphRectangle(3.30,theY,3.30 + 13.98 - 0.6 ,theY+7.55, color="#ff0000", width=0.1)
 
+# ---------------------------------
 # vernier for swing arm
-swingArmRadius = 42.25
+swingArmRadius = 42.5
 sg.setCenter(-80,60)
 for i in range(0,11):
+    whereToPrint = i
     tickHeight = 2.5 # mm
     if i % 5 == 0:
         tickHeight = 3.25
     if i % 10 == 0:
         tickHeight = 3.50
+    if i == 0:
+        whereToPrint = i + 0.25
     if i < 10 and i > -10:
-        theDoc += sg.graphPolarText(str(abs(i)),0,0,i+90, swingArmRadius + 5, size="1.5pt", textAnchor="middle" )
+        theDoc += sg.graphPolarText(str(abs(i)),0,0, whereToPrint + 90, swingArmRadius + 3.5, size="1.5pt", textAnchor="middle" )
     theDoc += sg.graphDualPolarLine(0,0,swingArmRadius,i + 90 , swingArmRadius+ tickHeight, i + 90, width=0.1)
 # swing arm cutout
-theDocCut += sg.graphArc(0,0,swingArmRadius,85,90 + 20 ,color="#ff0000")
-inp1 = pysgfs.circle_line_segment_intersection([0, 0], swingArmRadius, [0,2], [10,2])
-print("inp1",inp1)
-theDocCut += sg.graphLine(inp1[1][0],inp1[1][1],inp1[1][0]+9.46,inp1[1][1], color="#ff0000",width=0.1)
+theDocCut += sg.graphArc(0,0,swingArmRadius,85,90 + 30 ,color="#ff0000")
 
-inp2 = pysgfs.circle_line_segment_intersection([0, 0], swingArmRadius, [0,2-13.73], [10,2-13.73])
+topWidth = 9.19
+inp1 = pysgfs.circle_line_segment_intersection([0, 0], swingArmRadius, [0,0], [10,0])
+print("inp1",inp1)
+theDocCut += sg.graphLine(inp1[1][0],inp1[1][1],inp1[1][0] + topWidth,inp1[1][1], color="#ff0000",width=0.1)
+
+inp2 = pysgfs.circle_line_segment_intersection([0, 0], swingArmRadius, [0,-15], [10,-15])
 print("inp2",inp2)
 theDocCut += sg.graphLine(inp2[1][0],inp2[1][1],inp2[1][0]+12.19,inp2[1][1], color="#ff0000", width=0.1)
 
 theDocCut += sg.graphLine(inp1[1][0]+9.46,inp1[1][1],inp1[1][0]+9.46,inp2[1][1], color="#ff0000", width=0.1)
 
+# ---------------------------------
 # put the center back to normal
 sg.setCenter(0,0)
 
@@ -222,7 +228,13 @@ for deg in range(0,91):
         tickWidth = 5.5
     if (deg % 10) == 0:
         tickWidth = 6.5
-        theDoc += sg.graphPolarText(str(int(deg)),30,30, deg, innerRadiusProtractor + 2.1 , size="4pt", textAnchor="middle")
+        degPrint = deg
+        if int(deg) == 0:
+            degPrint = deg + 1
+        if int(deg) == 90:
+            degPrint = deg - 1.5
+        print(deg,degPrint)
+        theDoc += sg.graphPolarText(str(int(deg)),30,30, degPrint, innerRadiusProtractor + 2.1 , size="4pt", textAnchor="middle")
     theDoc += sg.graphDualPolarLine(30,30, outerRadiusProtractor - tickWidth, deg, outerRadiusProtractor, deg)
     #theDoc += sg.graphDualPolarLine(30,30, innerRadiusProtractor, deg, innerRadiusProtractor + 2, deg)
 
@@ -243,7 +255,7 @@ theDocCut += cutPortion
 
 # ######################
 
-#theDoc += theDocCut # HERE Here temporary while debug to keep them both in one file
+theDoc += theDocCut # HERE Here temporary while debug to keep them both in one file
 
 theDoc += sg.svgFooter()
 theDocCut += sg.svgFooter()
