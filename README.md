@@ -3,7 +3,8 @@ GadgetSchool Objects
 
 Files to go with https://gadgetschool.sfaqt.com/
 
-MinersPocketTransit712869 - a supergadget. Taken from a expired patent.
+MinersPocketTransit712869 - a supergadget. Taken from a expired patent. 3D
+print and paper craft.
 
 SurveyingInstrument1116452 - mixed media gadget for visually finding angles and
 measuring height. 3D print and paper cutouts for the dial faces.
