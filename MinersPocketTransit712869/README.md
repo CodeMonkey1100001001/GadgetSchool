@@ -15,6 +15,7 @@ Throughout the design we tried to use brass parts for the metallic ones to make 
 * STLFiles/ArmBot-MinersPocketTransitUS712869.stl - print veritcal. Generate Support: everywhere. Adhesion: Raft 0.9 Hours
 * STLFiles/FlapTopBot-MinersPocketTransitUS712869.stl - print two copies. Generate Support: No. Adhesion: Skirt.  2x 17mins = 0.53 Hours
 * STLFiles/BottomDisk-MinersPocketTransitUS712869 - flip so top is bottom. Generate Support: off Adhesion: Skirt 1.78 Hours
+* STLFiles/TopDisk-MinersPocketTransitUS712869.stl - Generate Support: off Ahdesion: Skirt 1.8 Hours
 
 # Paper Print files
 
