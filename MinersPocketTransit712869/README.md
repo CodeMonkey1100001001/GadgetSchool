@@ -17,12 +17,13 @@ Throughout the design we tried to use brass parts for the metallic ones to make 
 * STLFiles/BottomDisk-MinersPocketTransitUS712869 - flip so top is bottom. Generate Support: off Adhesion: Skirt 1.78 Hours
 
 # Paper Print files
-MPT712869_GlueOnFaces_PRINT.svg - PRINT file original
-MPT712869_GlueOnFaces_PRINT.pdf - PRINT file pdf version
-MPT712869_GlueOnFaces_CUT.svg - CUT file original
-MPT712869_GlueOnFaces_CUT.pdf - CUT file pdf version
-MPT712869_GlueOnFaces_PRINTandManualCUT.svg - PRINT and CUT original - Use with Craft Cutter Machine
-MPT712869_GlueOnFaces_PRINTandManualCUT.pdf - PRINT and CUT - Useful for manual cutting.
+
+* MPT712869_GlueOnFaces_PRINT.svg - PRINT file original
+* MPT712869_GlueOnFaces_PRINT.pdf - PRINT file pdf version
+* MPT712869_GlueOnFaces_CUT.svg - CUT file original
+* MPT712869_GlueOnFaces_CUT.pdf - CUT file pdf version
+* MPT712869_GlueOnFaces_PRINTandManualCUT.svg - PRINT and CUT original - Use with Craft Cutter Machine
+* MPT712869_GlueOnFaces_PRINTandManualCUT.pdf - PRINT and CUT - Useful for manual cutting.
 
 
 # Parts and Materials Needed
