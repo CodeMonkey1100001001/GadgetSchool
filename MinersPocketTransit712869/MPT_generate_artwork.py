@@ -97,27 +97,27 @@ theDoc += "<g id='print_bottom_cylinder'>\n"
 # theDoc += sg.graphRectangle(printCutXmin - 10, printCutYmax + 10, printCutXmin, printCutYmax, color="#000000", width=.25)
 # #UR
 # theDoc += sg.graphRectangle(printCutXmax + 10, printCutYmax +10, printCutXmax, printCutYmax, color="#000000", width=.25)
-
-
+# bottom cylinder ring
 for i in range(0, 371):
     theY = stripHeight
     theX = sg.map(i, 0, 360, 0, stripWidth, )
     tickHeight = 3.0  # mm
     if i % 5 == 0:
-        tickHeight = 5.0
+        tickHeight = 4.5
     if i % 10 == 0:
-        tickHeight = 6.0
-        theDoc += sg.graphText(str(i), theX, theY - 7.5, size="4pt", textAnchor="middle")
-    theDoc += sg.graphLine(theX, theY + 1, theX, theY - tickHeight)  # print past the cut line
+        tickHeight = 5.5
+        theDoc += sg.graphText(str(i), theX, theY - 7.7, size="8pt", textAnchor="middle")
+    theDoc += sg.graphLine(theX, theY + 1, theX, theY - tickHeight, width=0.1)  # print past the cut line
 theDoc += "</g>\n"
 
 # The vernier scale
-# vernier for top disk
+# vernier for bottom disk
+sg.setCenter(-80, -75)
 theDoc += "<g id='printvernier'>\n"
-theY = 40
+theY = 0
 for i in range(-10, 11):
-    theY = 40
-    iValue = i - (0.1 * i)
+    theY = 0
+    iValue = (i * 2) - (0.1 * i)
     theX = sg.map(iValue, 0, 360, 0, stripWidth) + 10
     tickHeight = 2.5  # mm
     if i % 5 == 0:
@@ -125,29 +125,30 @@ for i in range(-10, 11):
     if i % 10 == 0:
         tickHeight = 3.50
     if i < 10 and i > -10:
-        theDoc += sg.graphText(str(abs(i)), theX, theY + 3.75, size="1.5pt", textAnchor="middle")
-    theDoc += sg.graphLine(theX, theY, theX, theY + tickHeight)
-theDoc += sg.graphText("Vernier Scale", 10, theY + 5.5, size="4pt", textAnchor="middle")
+        theDoc += sg.graphText(str(abs(i)), theX, theY + 3.75, size="4pt", textAnchor="middle")
+    theDoc += sg.graphLine(theX, theY, theX, theY + tickHeight, width=0.1)
+theDoc += sg.graphText("Vernier Scale 0.1º", 10, theY + 5.5, size="6pt", textAnchor="middle")
 theDoc += "</g>\n"
-theDocCut += sg.graphRectangle(3.75, theY, 3.75 + 13.98 - 1.45, theY + 7.55, color="#ff0000", width=0.1)
+theDocCut += sg.graphRectangle(-3.0, theY, 3.75 + 19.3, theY + 7.55, color="#ff0000", width=0.1)
 
 # ---------------------------------
 # vernier for swing arm
 swingArmRadius = 42.5
 sg.setCenter(-80, 60)
 for i in range(0, 11):
-    whereToPrint = i
+    whereToPrint = i * 2 - 0.5
     tickHeight = 2.5  # mm
+    iValue = (i * 2) - (0.1 * i)
     if i % 5 == 0:
         tickHeight = 3.25
     if i % 10 == 0:
         tickHeight = 3.50
     if i == 0:
         whereToPrint = i + 0.25
-    if i < 10 and i > -10:
-        theDoc += sg.graphPolarText(str(abs(i)), 0, 0, whereToPrint + 90, swingArmRadius + 3.5, size="1.5pt",
+    if i < 10 and i > 0:
+        theDoc += sg.graphPolarText(str(abs(i)), 0, 0, whereToPrint + 90, swingArmRadius + 3.5, size="3.5pt",
                                     textAnchor="middle")
-    theDoc += sg.graphDualPolarLine(0, 0, swingArmRadius, i + 90, swingArmRadius + tickHeight, i + 90, width=0.1)
+    theDoc += sg.graphDualPolarLine(0, 0, swingArmRadius, iValue + 90, swingArmRadius + tickHeight, iValue + 90, width=0.1)
 # swing arm cutout
 theDocCut += sg.graphArc(0, 0, swingArmRadius, 85, 90 + 30, color="#ff0000")
 
@@ -171,16 +172,16 @@ innerDiameter = 56.6
 innerRadius = innerDiameter / 2
 outerDiameter = 80.0
 outerRadius = outerDiameter / 2
-# actual protractor
+# actual protractor top
 for deg in range(0, 360):
     tickWidth = 6.5
     if (deg % 5) == 0:
         tickWidth = 7.5
     if (deg % 10) == 0:
         tickWidth = 8.5
-        theDoc += sg.graphPolarText(str(int(deg + 90 )%360), 0, 0, deg, innerRadius + 2.1, size="4pt", textAnchor="middle")
-    theDoc += sg.graphDualPolarLine(0, 0, outerRadius - tickWidth, deg, outerRadius, deg)
-    theDoc += sg.graphDualPolarLine(0, 0, innerRadius, deg, innerRadius + 2, deg)
+        theDoc += sg.graphPolarText(str(int(deg + 90 )%360), 0, 0, deg, outerRadius - 3.1, size="7.6pt", textAnchor="middle")
+    theDoc += sg.graphDualPolarLine(0, 0, innerRadius , deg, innerRadius + tickWidth, deg, width=0.1)
+    #theDoc += sg.graphDualPolarLine(0, 0, innerRadius, deg, innerRadius + 2, deg)
 # CUT for the Top Disk Dial
 cutColor = "#ff0000"
 cutWidth = 0.1
@@ -235,9 +236,9 @@ for deg in range(0, 91):
         if int(deg) == 90:
             degPrint = deg - 1.5
         print(deg, degPrint)
-        theDoc += sg.graphPolarText(str(int(deg)), 30, 30, degPrint, innerRadiusProtractor + 2.1, size="4pt",
+        theDoc += sg.graphPolarText(str(int(deg)), 30, 30, degPrint, innerRadiusProtractor + 2.1, size="6pt",
                                     textAnchor="middle")
-    theDoc += sg.graphDualPolarLine(30, 30, outerRadiusProtractor - tickWidth, deg, outerRadiusProtractor, deg)
+    theDoc += sg.graphDualPolarLine(30, 30, outerRadiusProtractor - tickWidth, deg, outerRadiusProtractor, deg, width=0.1)
     # theDoc += sg.graphDualPolarLine(30,30, innerRadiusProtractor, deg, innerRadiusProtractor + 2, deg)
 
 # bottom arm protractor cut
@@ -253,7 +254,7 @@ theDoc += printPortion
 theDocCut += cutPortion
 
 # Add the cut file to the print file
-theDoc += theDocCut # Uncomment if you want PRINT+CUT
+# theDoc += theDocCut # Uncomment if you want PRINT+CUT
 
 theDocCut = sg.svgHeader() + theDocCut  # This allows it to be part of the PRINT and/or the CUT
 # ######################
