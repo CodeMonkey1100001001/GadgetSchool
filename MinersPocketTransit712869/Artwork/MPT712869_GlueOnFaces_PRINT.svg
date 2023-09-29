@@ -21,14 +21,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="0.75735294"
-     inkscape:cx="414.60194"
-     inkscape:cy="374.99029"
-     inkscape:window-width="1406"
-     inkscape:window-height="1015"
-     inkscape:window-x="344"
+     inkscape:zoom="1.8101934"
+     inkscape:cx="169.87136"
+     inkscape:cy="517.34805"
+     inkscape:window-width="1920"
+     inkscape:window-height="1020"
+     inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      inkscape:current-layer="svg2668" />
   <g
      id="print_bottom_cylinder">
@@ -3419,7 +3419,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text946">0</text>
+     id="text946">90</text>
   <line
      x1="528.0"
      y1="256.8188976377953"
@@ -3568,7 +3568,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text988">10</text>
+     id="text988">100</text>
   <line
      x1="554.2523229228746"
      y1="259.1156782847686"
@@ -3717,7 +3717,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1030">20</text>
+     id="text1030">110</text>
   <line
      x1="579.7069822980538"
      y1="265.9362337079572"
@@ -3866,7 +3866,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1072">30</text>
+     id="text1072">120</text>
   <line
      x1="603.5905511811023"
      y1="277.0733247821952"
@@ -4015,7 +4015,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1114">40</text>
+     id="text1114">130</text>
   <line
      x1="625.1773394171776"
      y1="292.1885566308317"
@@ -4164,7 +4164,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1156">50</text>
+     id="text1156">140</text>
   <line
      x1="643.8114433691684"
      y1="310.82266058282244"
@@ -4313,7 +4313,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1198">60</text>
+     id="text1198">150</text>
   <line
      x1="658.9266752178049"
      y1="332.4094488188977"
@@ -4462,7 +4462,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1240">70</text>
+     id="text1240">160</text>
   <line
      x1="670.0637662920428"
      y1="356.2930177019462"
@@ -4611,7 +4611,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1282">80</text>
+     id="text1282">170</text>
   <line
      x1="676.8843217152314"
      y1="381.74767707712556"
@@ -4760,7 +4760,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1324">90</text>
+     id="text1324">180</text>
   <line
      x1="679.1811023622047"
      y1="408.00000000000006"
@@ -4909,7 +4909,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1366">100</text>
+     id="text1366">190</text>
   <line
      x1="676.8843217152314"
      y1="434.25232292287455"
@@ -5058,7 +5058,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1408">110</text>
+     id="text1408">200</text>
   <line
      x1="670.0637662920428"
      y1="459.7069822980539"
@@ -5207,7 +5207,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1450">120</text>
+     id="text1450">210</text>
   <line
      x1="658.9266752178049"
      y1="483.5905511811024"
@@ -5356,7 +5356,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1492">130</text>
+     id="text1492">220</text>
   <line
      x1="643.8114433691684"
      y1="505.1773394171777"
@@ -5505,7 +5505,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1534">140</text>
+     id="text1534">230</text>
   <line
      x1="625.1773394171776"
      y1="523.8114433691684"
@@ -5654,7 +5654,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1576">150</text>
+     id="text1576">240</text>
   <line
      x1="603.5905511811023"
      y1="538.9266752178049"
@@ -5803,7 +5803,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1618">160</text>
+     id="text1618">250</text>
   <line
      x1="579.7069822980538"
      y1="550.0637662920429"
@@ -5952,7 +5952,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1660">170</text>
+     id="text1660">260</text>
   <line
      x1="554.2523229228746"
      y1="556.8843217152315"
@@ -6101,7 +6101,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1702">180</text>
+     id="text1702">270</text>
   <line
      x1="528.0"
      y1="559.1811023622048"
@@ -6250,7 +6250,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1744">190</text>
+     id="text1744">280</text>
   <line
      x1="501.7476770771255"
      y1="556.8843217152315"
@@ -6399,7 +6399,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1786">200</text>
+     id="text1786">290</text>
   <line
      x1="476.29301770194616"
      y1="550.0637662920429"
@@ -6548,7 +6548,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1828">210</text>
+     id="text1828">300</text>
   <line
      x1="452.40944881889766"
      y1="538.926675217805"
@@ -6697,7 +6697,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1870">220</text>
+     id="text1870">310</text>
   <line
      x1="430.8226605828224"
      y1="523.8114433691684"
@@ -6846,7 +6846,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1912">230</text>
+     id="text1912">320</text>
   <line
      x1="412.18855663083167"
      y1="505.1773394171777"
@@ -6995,7 +6995,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1954">240</text>
+     id="text1954">330</text>
   <line
      x1="397.0733247821951"
      y1="483.5905511811024"
@@ -7144,7 +7144,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text1996">250</text>
+     id="text1996">340</text>
   <line
      x1="385.9362337079572"
      y1="459.70698229805396"
@@ -7293,7 +7293,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2038">260</text>
+     id="text2038">350</text>
   <line
      x1="379.11567828476853"
      y1="434.25232292287455"
@@ -7442,7 +7442,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2080">270</text>
+     id="text2080">0</text>
   <line
      x1="376.81889763779526"
      y1="408.00000000000006"
@@ -7591,7 +7591,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2122">280</text>
+     id="text2122">10</text>
   <line
      x1="379.11567828476853"
      y1="381.7476770771255"
@@ -7740,7 +7740,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2164">290</text>
+     id="text2164">20</text>
   <line
      x1="385.9362337079572"
      y1="356.2930177019462"
@@ -7889,7 +7889,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2206">300</text>
+     id="text2206">30</text>
   <line
      x1="397.0733247821951"
      y1="332.40944881889766"
@@ -8038,7 +8038,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2248">310</text>
+     id="text2248">40</text>
   <line
      x1="412.18855663083167"
      y1="310.82266058282244"
@@ -8187,7 +8187,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2290">320</text>
+     id="text2290">50</text>
   <line
      x1="430.8226605828224"
      y1="292.1885566308317"
@@ -8336,7 +8336,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2332">330</text>
+     id="text2332">60</text>
   <line
      x1="452.40944881889754"
      y1="277.0733247821952"
@@ -8485,7 +8485,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2374">340</text>
+     id="text2374">70</text>
   <line
      x1="476.29301770194616"
      y1="265.9362337079572"
@@ -8634,7 +8634,7 @@
      font-family="monospace"
      font-size="4pt"
      text-anchor="middle"
-     id="text2416">350</text>
+     id="text2416">80</text>
   <line
      x1="501.7476770771255"
      y1="259.1156782847686"

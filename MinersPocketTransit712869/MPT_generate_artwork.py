@@ -81,6 +81,7 @@ theDocCut += "<g id='cut'>\n"
 # the alignment cut
 # theDoc += sg.graphRectangle(printCutXmin,printCutYmin,printCutXmax,printCutYmax, color="#ff0000",width=0.1)
 theDocCut += sg.graphRectangle(0, 0, stripWidth + 8, stripHeight - 0.9, color="#ff0000")  # strip cut
+theDocCut += sg.graphLine(-1.0,6,6,10,width=0.1, color="#ff0000") # cut a triangle out of the left side so there is overlap
 for i in range(0, 371, int(360 / 12)):
     theX = sg.map(i, 0, 360, 0, stripWidth)
     theY = 0  # stripHeight
@@ -128,7 +129,7 @@ for i in range(-10, 11):
     theDoc += sg.graphLine(theX, theY, theX, theY + tickHeight)
 theDoc += sg.graphText("Vernier Scale", 10, theY + 5.5, size="4pt", textAnchor="middle")
 theDoc += "</g>\n"
-theDocCut += sg.graphRectangle(3.30, theY, 3.30 + 13.98 - 0.6, theY + 7.55, color="#ff0000", width=0.1)
+theDocCut += sg.graphRectangle(3.75, theY, 3.75 + 13.98 - 1.45, theY + 7.55, color="#ff0000", width=0.1)
 
 # ---------------------------------
 # vernier for swing arm
@@ -177,7 +178,7 @@ for deg in range(0, 360):
         tickWidth = 7.5
     if (deg % 10) == 0:
         tickWidth = 8.5
-        theDoc += sg.graphPolarText(str(int(deg)), 0, 0, deg, innerRadius + 2.1, size="4pt", textAnchor="middle")
+        theDoc += sg.graphPolarText(str(int(deg + 90 )%360), 0, 0, deg, innerRadius + 2.1, size="4pt", textAnchor="middle")
     theDoc += sg.graphDualPolarLine(0, 0, outerRadius - tickWidth, deg, outerRadius, deg)
     theDoc += sg.graphDualPolarLine(0, 0, innerRadius, deg, innerRadius + 2, deg)
 # CUT for the Top Disk Dial
@@ -252,7 +253,7 @@ theDoc += printPortion
 theDocCut += cutPortion
 
 # Add the cut file to the print file
-# theDoc += theDocCut # Uncomment if you want PRINT+CUT
+theDoc += theDocCut # Uncomment if you want PRINT+CUT
 
 theDocCut = sg.svgHeader() + theDocCut  # This allows it to be part of the PRINT and/or the CUT
 # ######################
