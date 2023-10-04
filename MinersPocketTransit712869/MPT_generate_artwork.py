@@ -81,7 +81,7 @@ theDocCut += "<g id='cut'>\n"
 # the alignment cut
 # theDoc += sg.graphRectangle(printCutXmin,printCutYmin,printCutXmax,printCutYmax, color="#ff0000",width=0.1)
 theDocCut += sg.graphRectangle(0, 0, stripWidth + 8, stripHeight - 0.9, color="#ff0000")  # strip cut
-theDocCut += sg.graphLine(-1.0,6,6,10,width=0.1, color="#ff0000") # cut a triangle out of the left side so there is overlap
+theDocCut += sg.graphLine(-1.0, 6, 6, 10, width=0.1, color="#ff0000") # cut a triangle out of the left side so there is overlap
 for i in range(0, 371, int(360 / 12)):
     theX = sg.map(i, 0, 360, 0, stripWidth)
     theY = 0  # stripHeight
@@ -179,9 +179,9 @@ for deg in range(0, 360):
         tickWidth = 7.5
     if (deg % 10) == 0:
         tickWidth = 8.5
-        theDoc += sg.graphPolarText(str(int(deg + 90 )%360), 0, 0, deg, outerRadius - 3.1, size="7.6pt", textAnchor="middle")
-    theDoc += sg.graphDualPolarLine(0, 0, innerRadius , deg, innerRadius + tickWidth, deg, width=0.1)
-    #theDoc += sg.graphDualPolarLine(0, 0, innerRadius, deg, innerRadius + 2, deg)
+        theDoc += sg.graphPolarText(str(int(deg + 90) % 360), 0, 0, deg, outerRadius - 3.1, size="7.6pt", textAnchor="middle")
+    theDoc += sg.graphDualPolarLine(0, 0, innerRadius, deg, innerRadius + tickWidth, deg, width=0.1)
+    # theDoc += sg.graphDualPolarLine(0, 0, innerRadius, deg, innerRadius + 2, deg)
 # CUT for the Top Disk Dial
 cutColor = "#ff0000"
 cutWidth = 0.1
