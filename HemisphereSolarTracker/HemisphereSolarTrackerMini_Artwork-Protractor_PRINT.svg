@@ -5,11 +5,34 @@
    height="215.9mm"
    width="279.4mm"
    id="svg2316"
+   sodipodi:docname="HemisphereSolarTrackerMini_Artwork-Protractor_PRINT.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview581"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="8.5684706"
+     inkscape:cx="236.1565"
+     inkscape:cy="392.36874"
+     inkscape:window-width="1406"
+     inkscape:window-height="1015"
+     inkscape:window-x="200"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2316" />
   <title
      id="title2034">FreeCAD SVG Export</title>
   <desc
@@ -3140,13 +3163,7 @@
          stroke-linejoin="bevel"
          font-family="'Sans Serif'"
          transform="translate(1397,1079.5)"
-         id="g2100-9-5">
-        <path
-           vector-effect="none"
-           d="m 120.84,-605 c -314.747,0 -576.918,241.33 -602.93,555"
-           fill-rule="evenodd"
-           id="path2098-2-9" />
-      </g>
+         id="g2100-9-5" />
       <g
          font-weight="400"
          font-size="31.75px"
@@ -3159,13 +3176,7 @@
          stroke-linejoin="bevel"
          font-family="'Sans Serif'"
          transform="translate(1397,1079.5)"
-         id="g2104-2-2">
-        <path
-           vector-effect="none"
-           d="m -482.09,50 c 27.077,326.514 309.148,572.143 636.284,554.08 C 481.331,586.017 734.645,310.826 725.61,-16.6836 716.575,-344.194 448.474,-605 120.84,-605"
-           fill-rule="evenodd"
-           id="path2102-8-2" />
-      </g>
+         id="g2104-2-2" />
       <g
          font-weight="400"
          font-size="31.75px"
