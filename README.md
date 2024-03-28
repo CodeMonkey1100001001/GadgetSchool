@@ -12,3 +12,4 @@ measuring height. 3D print and paper cutouts for the dial faces.
 TrigComp3414190 - Paper gadget based on an expired patent that performs
 trigonometric calculation.
 
+HemisphereSolarTracker - 
